@@ -6,10 +6,18 @@ const USER_API = "https://edurise-backend-d092v6u4b-suraj-patels-projects-5d9f3d
 
 export const authApi = createApi({
     reducerPath:"authApi",
-    baseQuery:fetchBaseQuery({
-        baseUrl:USER_API,
-        credentials:'include'
+    baseQuery: fetchBaseQuery({
+        baseUrl: USER_API,
+        credentials: 'include', // ✅ Ensures cookies are sent
+        prepareHeaders: (headers, { getState }) => {
+            const token = getState().auth?.token;
+            if (token) {
+                headers.set('Authorization', `Bearer ${token}`); // ✅ Attach token
+            }
+            return headers;
+        },
     }),
+    
     endpoints: (builder) => ({
         registerUser: builder.mutation({
             query: (inputData) => ({
