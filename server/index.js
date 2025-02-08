@@ -26,8 +26,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin:"http://localhost:5173",
-    credentials:true
+    origin: "https://edurise-frontend-efq2svwai-suraj-patels-projects-5d9f3d7c.vercel.app", 
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
 }));
  
 // apis
