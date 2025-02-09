@@ -26,10 +26,11 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: "https://edurise-frontend-efq2svwai-suraj-patels-projects-5d9f3d7c.vercel.app", 
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: "https://edurise-frontend-efq2svwai-suraj-patels-projects-5d9f3d7c.vercel.app",
+    credentials: true, 
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
  
 // apis
 app.use("/api/v1/media", mediaRoute);
