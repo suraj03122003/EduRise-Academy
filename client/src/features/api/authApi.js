@@ -1,22 +1,24 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import { userLoggedIn, userLoggedOut } from "../authSlice";
 
-const USER_API = "https://edurise-backend-d092v6u4b-suraj-patels-projects-5d9f3d7c.vercel.app/api/v1/user/";
-
+const USER_API = "https://edurise-backend.vercel.app/api/v1/user/";
 
 export const authApi = createApi({
-    reducerPath:"authApi",
+    reducerPath: "authApi",
     baseQuery: fetchBaseQuery({
         baseUrl: USER_API,
-        credentials: 'include', // ✅ Ensures cookies are sent
-        prepareHeaders: (headers, { getState }) => {
-            const token = getState().auth?.token;
-            if (token) {
-                headers.set('Authorization', `Bearer ${token}`); // ✅ Attach token
-            }
-            return headers;
-        },
+        credentials: "include"  // Ensure cookies are included
     }),
+    endpoints: (builder) => ({
+        loadUser: builder.query({
+            query: () => ({
+                url: "profile",
+                method: "GET",
+            })
+        })
+    })
+});
+
     
     endpoints: (builder) => ({
         registerUser: builder.mutation({
