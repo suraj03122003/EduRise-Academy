@@ -16,7 +16,13 @@ import courseProgressRoute from "./routes/courseProgress.route.js";
 dotenv.config({});
 
 // call database connection here
-connectDB();
+connectDB()
+  .then(() => console.log("✅ Database Connected Successfully"))
+  .catch(err => {
+    console.error("❌ Database Connection Failed", err);
+    process.exit(1); // Stop if DB fails
+  });
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
