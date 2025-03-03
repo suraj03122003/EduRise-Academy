@@ -26,10 +26,16 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: "https://edurise-frontend-efq2svwai-suraj-patels-projects-5d9f3d7c.vercel.app",
-    credentials: true, 
+    origin: ["https://edurise-frontend-suraj03122003-suraj-patels-projects-5d9f3d7c.vercel.app"],  // Your latest frontend URL
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
+app.get("/", (req, res) => {
+    res.json({ message: "Backend is running correctly!" });
+});
+
+
 
  
 // apis
